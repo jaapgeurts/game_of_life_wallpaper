@@ -19,6 +19,7 @@ find_package(Qt5 CONFIG REQUIRED COMPONENTS
     Qml
     Gui
     Core
+    Quick
 )
 
 # wallpaper applet

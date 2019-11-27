@@ -30,23 +30,8 @@ import org.kde.plasma.private.life_wallpaper 1.0
 Item {
     id: root
 
-    Rectangle {
+    GameOfLife {
+        id: gameOfLife
         anchors.fill: parent
-        color: Theme.backgroundColor
-    }
-
-    ColumnLayout {
-        anchors.centerIn: parent
-
-        PlasmaExtras.Title {
-            Layout.alignment: Qt.AlignCenter
-            text: wallpaper.configuration.DisplayText ||
-                  i18n("<Please configure a text to display>")
-        }
-
-        PlasmaComponents.Label {
-            Layout.alignment: Qt.AlignCenter
-            text: HelloWorld.text
-        }
     }
 }

@@ -25,6 +25,10 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
+#include <qqml.h>
+
+#include "gameoflife.h"
+
 static QJSValue singletonTypeExampleProvider(QQmlEngine* engine, QJSEngine* scriptEngine)
 {
     Q_UNUSED(engine)
@@ -40,4 +44,7 @@ void life_wallpaperPlugin::registerTypes(const char* uri)
     Q_ASSERT(uri == QLatin1String("org.kde.plasma.private.life_wallpaper"));
 
     qmlRegisterSingletonType(uri, 1, 0, "HelloWorld", singletonTypeExampleProvider);
+    
+    qmlRegisterType<GameOfLife>(uri, 1, 0, "GameOfLife");
+    
 }
