@@ -6,10 +6,10 @@
   <kcfgfile name=""/>
 
   <group name="General">
-    <entry name="DisplayText" type="String">
-      <label>Text to display</label>
-      <default>Hello World!</default>
-    </entry>
+      <entry name="color" type="String">
+            <label>Color</label>
+            <default>#00ff00</default>
+        </entry>
   </group>
 
 </kcfg>

@@ -25,13 +25,48 @@ import org.kde.plasma.core 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 
-import org.kde.plasma.private.life_wallpaper 1.0
+//We need units from it
+import org.kde.plasma.core 2.0 as Plasmacore
 
-Item {
+import "code/life.js" as Life
+
+
+Canvas {
     id: root
+    anchors.fill: parent
 
-    GameOfLife {
-        id: gameOfLife
-        anchors.fill: parent
+    property int mleft : 0
+    property int mtop : 0
+
+    onPaint: {
+        var ctx = getContext("2d");
+        Life.paintMatrix(ctx, wallpaper.configuration.color);
+    }
+
+    onWidthChanged: {
+        stepTimer.stop();
+        Life.dimensionChanged(width,height);
+        stepTimer.start();
+    }
+    onHeightChanged: {
+        stepTimer.stop();
+        Life.dimensionChanged(width,height);
+        stepTimer.start();
+    }
+
+    Timer {
+        id: stepTimer
+        interval: 1000
+        repeat: true
+        running: true
+        triggeredOnStart: true
+
+        onTriggered: {
+            mleft++;
+            mtop++;
+            Life.advanceGeneration();
+            root.requestPaint();
+        }
+
     }
 }

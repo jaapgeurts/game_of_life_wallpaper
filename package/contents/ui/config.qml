@@ -18,39 +18,32 @@
  */
 
 import QtQuick 2.1
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 1.0 as QtControls
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.8
 
 // for "units"
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.kquickcontrols 2.0 as KQuickControls
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 
 ColumnLayout {
     id: root
-    property alias cfg_DisplayText: textField.text
 
-    RowLayout {
-        spacing: units.largeSpacing / 2
+    property alias cfg_color : colorButton.color;
 
-        // To allow aligned integration in the settings form,
-        // "formAlignment" is a property injected by the config containment
-        // which defines the offset of the value fields
-        QtControls.Label {
-            Layout.minimumWidth: width
-            Layout.maximumWidth: width
-            width: formAlignment - units.largeSpacing
-            horizontalAlignment: Text.AlignRight
+    Row {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
 
-            // use i18nd in config QML, as the default textdomain is set to that of the config container
-            text: i18nd("plasma_wallpaper_org.kde.plasma.life_wallpaper", "Text to Display:")
+        Label {
+            anchors.verticalCenter: parent.verticalCenter
+            rightPadding: 15
+            text: i18n("Cell color")
         }
-        QtControls.TextField {
-            id: textField
-            Layout.fillWidth: true
+        KQuickControls.ColorButton {
+            id: colorButton
+            dialogTitle: i18n("Select cell color")
         }
-    }
-
-    Item { // tighten layout
-        Layout.fillHeight: true
     }
 }
