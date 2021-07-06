@@ -45,10 +45,13 @@ void GameOfLife::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeo
 
     cells = new State[cell_count_x * cell_count_y];
     cells_back = new State[cell_count_x * cell_count_y];
+    
+    unsigned int time_ui = static_cast<unsigned int>( time(NULL) );
+    srand(time_ui);
 
     for(int j=0; j<cell_count_y; j++) {
         for(int i=0; i<cell_count_x; i++) {
-            cells[j*cell_count_x+i] = rand() % 5 == 1 ? ALIVE : DEAD;
+            cells[j*cell_count_x+i] = rand() % 9 == 1 ? ALIVE : DEAD;
             cells_back[j*cell_count_x+i] = DEAD;
         }
     }
