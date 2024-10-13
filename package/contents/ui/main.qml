@@ -11,47 +11,42 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this program; if not, write to the
- * Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
 
-import QtQuick.Layouts 1.1
-
-import org.kde.plasma.core 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-
-//We need units from it
-import org.kde.plasma.core 2.0 as Plasmacore
-
+import QtQuick
+import QtQuick.Layouts
+import org.kde.plasma.plasmoid
 import "code/life.js" as Life
+import org.kde.plasma.core as PlasmaCore
 
-
-Canvas {
+WallpaperItem {
     id: root
-    anchors.fill: parent
 
-    property int mleft : 0
-    property int mtop : 0
+    Canvas {
+        id: gameCanvas
+        anchors.fill: parent
+        property int mleft: 0
+        property int mtop: 0
+        width: parent.width
+        height: parent.height
 
-    onPaint: {
-        var ctx = getContext("2d");
-        Life.paintMatrix(ctx, wallpaper.configuration.color);
-    }
+        onPaint: {
+            var ctx = getContext("2d");
+            Life.paintMatrix(ctx,  wallpaper.configuration.color);
+        }
 
-    onWidthChanged: {
-        stepTimer.stop();
-        Life.dimensionChanged(width,height);
-        stepTimer.start();
-    }
-    onHeightChanged: {
-        stepTimer.stop();
-        Life.dimensionChanged(width,height);
-        stepTimer.start();
+        onWidthChanged: {
+            stepTimer.stop();
+            Life.dimensionChanged(width, height);
+            stepTimer.start();
+        }
+
+        onHeightChanged: {
+            stepTimer.stop();
+            Life.dimensionChanged(width, height);
+            stepTimer.start();
+        }
     }
 
     Timer {
@@ -62,11 +57,19 @@ Canvas {
         triggeredOnStart: true
 
         onTriggered: {
-            mleft++;
-            mtop++;
+            gameCanvas.mleft++;
+            gameCanvas.mtop++;
             Life.advanceGeneration();
-            root.requestPaint();
+            gameCanvas.requestPaint();
         }
-
     }
+
+    Component.onCompleted: {
+        // Initialize the Life simulation using the actual dimensions
+        Life.dimensionChanged(width, height);
+    }
+
+
 }
+
+

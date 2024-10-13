@@ -1,5 +1,6 @@
 # Game of Life Plasma Wallpaper
 
-Install by copying contents to ~/.local/share/plasma/wallpapers/org.kde.plasma.gameoflife/
+## Installation
+Copy the repo contents to ~/.local/share/plasma/wallpapers/org.kde.plasma.gameoflife/
 
 

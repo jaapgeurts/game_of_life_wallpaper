@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Wallpaper",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "%{EMAIL}",
+                "Name": "%{AUTHOR}"
+            }
+        ],
+        "Id": "org.kde.plasma.gameoflife",
+        "License": "LGPLv2+",
+        "Name": "Conway's Game of Life",
+        "Version": "%{VERSION}",
+        "Description": "Allows you to use Shaders as your wallpaper"
+    },
+    "X-KDE-ParentApp": "org.kde.plasmashell",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-ContainmentType": "Desktop"
+
+}
+
+
+
