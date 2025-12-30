@@ -14,6 +14,12 @@
           <label>Background Color</label>
           <default>#000000</default>
       </entry>
+      <entry name="updateTime" type="Int">
+          <default>1000</default>
+      </entry>
+      <entry name="cellSize" type="Int">
+          <default>10</default>
+      </entry>
   </group>
 
 </kcfg>

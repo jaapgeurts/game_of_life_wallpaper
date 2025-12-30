@@ -8,7 +8,7 @@ const State = {
 
 var cell_count_x = 0;
 var cell_count_y = 0;
-var SIZE = 10;
+var SIZE;
 
 var cells = [];
 var cells_back = [];
@@ -23,7 +23,8 @@ function fillRandom() {
     }
 }
 
-function dimensionChanged(width,height) {
+function dimensionChanged(width, height, cellSize) {
+  SIZE = cellSize;
   cell_count_x = width / SIZE;
   cell_count_y = height / SIZE;
   fillRandom();
