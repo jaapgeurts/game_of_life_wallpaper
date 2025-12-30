@@ -33,7 +33,7 @@ WallpaperItem {
 
         onPaint: {
             var ctx = getContext("2d");
-            Life.paintMatrix(ctx,  wallpaper.configuration.color);
+            Life.paintMatrix(ctx,  wallpaper.configuration.cellColor, wallpaper.configuration.backgroundColor);
         }
 
         onWidthChanged: {

@@ -86,15 +86,15 @@ function advanceGeneration() {
     }
 }
 
-function paintMatrix(ctx, color){
+function paintMatrix(ctx, cellColor, backgroundColor){
     for(let y=0;y<cell_count_y;y++){
         for(let x=0;x<cell_count_x;x++) {
             let idx = y*cell_count_x+x;
             if (cells[idx] == State.ALIVE) {
-                ctx.fillStyle = color;
+                ctx.fillStyle = cellColor;
                 ctx.fillRect(x*SIZE,y*SIZE,SIZE,SIZE);
             } else {
-                ctx.fillStyle = "black";
+                ctx.fillStyle = backgroundColor;
                 ctx.fillRect(x*SIZE,y*SIZE,SIZE,SIZE);
             }
         }

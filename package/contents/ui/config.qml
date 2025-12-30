@@ -1,30 +1,23 @@
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls
+import QtQuick 2.0
+import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kquickcontrols 2.0 as KQControls
 
-// for "units"
-import org.kde.plasma.components as PlasmaComponents
-import org.kde.kquickcontrols as KQuickControls
-import org.kde.plasma.core as PlasmaCore
-
-
-ColumnLayout {
+Kirigami.FormLayout {
     id: root
+    twinFormLayouts: parentLayout
 
-    property alias cfg_color : colorButton.color;
+    property alias cfg_cellColor: cellColorButton.color
+    property alias cfg_backgroundColor: backgroundColorButton.color
 
-    Row {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
+    KQControls.ColorButton {
+        id: cellColorButton
+        Kirigami.FormData.label: i18n("Cell color:")
+        dialogTitle: i18n("Select cell color")
+    }
 
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            rightPadding: 15
-            text: i18n("Cell color")
-        }
-        KQuickControls.ColorButton {
-            id: colorButton
-            dialogTitle: i18n("Select cell color")
-        }
+    KQControls.ColorButton {
+        id: backgroundColorButton
+        Kirigami.FormData.label: i18n("Background color:")
+        dialogTitle: i18n("Select background color")
     }
 }
