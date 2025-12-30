@@ -33,20 +33,11 @@ WallpaperItem {
 
         onPaint: {
             var ctx = getContext("2d");
-            Life.paintMatrix(ctx,  wallpaper.configuration.cellColor, wallpaper.configuration.backgroundColor, wallpaper.configuration.cellSize);
+            Life.paintMatrix(ctx,  wallpaper.configuration.cellColor, wallpaper.configuration.backgroundColor);
         }
 
-        onWidthChanged: {
-            stepTimer.stop();
-            Life.dimensionChanged(width, height, wallpaper.configuration.cellSize);
-            stepTimer.start();
-        }
-
-        onHeightChanged: {
-            stepTimer.stop();
-            Life.dimensionChanged(width, height, wallpaper.configuration.cellSize);
-            stepTimer.start();
-        }
+        onWidthChanged: restartSimulation()
+        onHeightChanged: restartSimulation()
     }
 
     Timer {
@@ -64,9 +55,24 @@ WallpaperItem {
         }
     }
 
+    Connections {
+        target: wallpaper.configuration
+
+        function onCellSizeChanged() {
+            restartSimulation()
+        }
+    }
+
     Component.onCompleted: {
         // Initialize the Life simulation using the actual dimensions
         Life.dimensionChanged(width, height, wallpaper.configuration.cellSize);
+    }
+
+    function restartSimulation() {
+        stepTimer.stop()
+        Life.dimensionChanged(gameCanvas.width, gameCanvas.height, wallpaper.configuration.cellSize)
+        stepTimer.start()
+        gameCanvas.requestPaint()
     }
 }
 
